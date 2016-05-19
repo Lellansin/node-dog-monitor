@@ -47,7 +47,7 @@ class Monitor {
     let str = JSON.stringify(res)
 
     this.redis.publish(this.config.channel, `MSG:alive||${this.name}||${pid}`)
-    this.redis.setex(`${this.config.channel}-process|${this.name}|${pid}`, 61) // 61 秒过期
+    this.redis.setex(`${this.config.channel}-process|${this.name}|${pid}`, 61, '') // 61 秒过期
     this.redis.hset(`${this.config.channel}|${today}|${this.name}|${pid}`, minute, str)
   }
 }
